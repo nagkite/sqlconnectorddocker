@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, render_template
-import os
 import vertexai
 from vertexai import language_models
 from pygments import highlight
@@ -11,7 +10,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'C:/webapp1/mlproj1-403203-c24f2a45ebd5.json'
+# Initialize Vertex AI
 vertexai.init(project="mlproj1-403203", location="us-central1")
 chat_model = language_models.CodeChatModel.from_pretrained("codechat-bison")
 
@@ -22,15 +21,13 @@ def index():
 @app.route("/process_sql", methods=["POST"])
 def process_sql_request():
     action = request.form.get('action', 'correct')
-    sql_query = ''  # Initialize sql_query to ensure it has a value
+    sql_query = request.form.get('sql_query', '')
     timestamp = datetime.now().isoformat()
 
     # Check for file upload
     file = request.files.get('sql_file')
     if file and file.filename:
         sql_query = file.read().decode('utf-8')
-    else:
-        sql_query = request.form.get('sql_query')
 
     if not sql_query:
         return jsonify({"error": "No SQL content provided", "timestamp": timestamp}), 400
@@ -45,4 +42,4 @@ def process_sql_request():
     return jsonify({"result": result, "timestamp": timestamp}), 200
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app
