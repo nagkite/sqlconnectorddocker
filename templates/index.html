@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Corrector and Explainer</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>SQL Corrector and Explainer</h1>
+    <form id="sqlForm">
+      <textarea name="sql_query" id="sql_query" placeholder="Enter your SQL query here..."></textarea>
+      <input type="file" name="sql_file" id="sql_file" accept=".sql, .txt">
+      <button type="button" id="correct_sql">Correct SQL</button>
+      <button type="button" id="explain_sql">Explain SQL</button>
+    </form>
+    <div id="feedback"></div>
+    <div id="result"></div>
+  </div>
+  <script src="/static/js/scripts.js"></script>
+</body>
+</html>

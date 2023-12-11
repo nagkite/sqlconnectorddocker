@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "webapp1-1",
+			"path": "../webapp1-1"
+		}
+	],
+	"settings": {}
+}
